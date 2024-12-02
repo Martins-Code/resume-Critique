@@ -1,63 +1,127 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./Homepage.css";
 
-const Homepage = () => {
+const heroImages = [
+  "/assets/hero1.jpg",
+  "/assets/hero2.jpg",
+  "/assets/hero3.jpg",
+  "/assets/hero4.jpg",
+];
+
+// Slider settings for React Slick
+const sliderSettings = {
+  dots: true, // Show navigation dots
+  infinite: true, // Loop slides
+  speed: 500, // Transition speed
+  slidesToShow: 1, // Show one slide at a time
+  slidesToScroll: 1, // Scroll one slide at a time
+  autoplay: true, // Enable auto-slide
+  autoplaySpeed: 3000, // Slide duration (in ms)
+};
+
+<Slider {...sliderSettings}>
+  {heroImages.map((image, index) => (
+    <div key={index}>
+      <img src={image} alt={`Hero ${index + 1}`} className="hero-image" />
+    </div>
+  ))}
+</Slider>;
+
+const features = [
+  {
+    img: "/assets/analyze.jpg",
+    title: "Analyze Your Resume",
+    text: "Get deep insights into your resume's strengths and weaknesses with our AI-powered analysis.",
+  },
+  {
+    img: "/assets/feedback.png",
+    title: "Receive Feedback",
+    text: "Our tool provides personalized suggestions to make your resume stand out to employers.",
+  },
+  {
+    img: "/assets/growth.jpg",
+    title: "Grow Your Career",
+    text: "Unlock your potential and increase your chances of landing your dream job.",
+  },
+];
+
+const App = () => {
   return (
-    <div>
-      {/* Header Section */}
-      <header>
-        <h1>Resume Critique Tool</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Introduction Section */}
-      <section>
-        <h2>Transform Your Resume, Land Your Dream Job</h2>
-        <p>
-          Our tool provides AI-powered insights and personalized feedback to
-          help you craft a winning resume.
-        </p>
-        <button>
-          <Link to="/signup">Get Started for Free</Link>
-        </button>
+    <div className="app">
+      {/* Hero Section */}
+      <section className="hero">
+        <Slider {...sliderSettings} className="hero-slider">
+          {heroImages.map((image, index) => (
+            <div key={index}>
+              <img
+                src={image}
+                alt={`Hero ${index + 1}`}
+                className="hero-image"
+              />
+            </div>
+          ))}
+        </Slider>
+        <div className="hero-content">
+          <h1>Transform Your Resume, Land Your Dream Job</h1>
+          <p>
+            Our tool provides AI-powered insights and personalized feedback to
+            help you craft a winning resume.
+          </p>
+          <button>Get Started for Free</button>
+        </div>
       </section>
 
-      {/* Benefits Section */}
-      <section>
-        <h3>Why Use Our Tool?</h3>
-        <ul>
-          <li>
-            📋 Analyze your resume for formatting, clarity, and content quality.
-          </li>
-          <li>💡 Get actionable tips tailored to your industry.</li>
-          <li>
-            🚀 Improve your chances of landing interviews with optimized
-            resumes.
-          </li>
-        </ul>
+      {/* Features Section */}
+      <section className="features-section">
+        {features.map((feature, index) => (
+          <div className="feature" key={index}>
+            <div
+              className={`feature-inner ${index % 2 === 0 ? "left" : "right"}`}
+            >
+              <div className="feature-image">
+                <img src={feature.img} alt={feature.title} />
+              </div>
+              <div className="feature-text">
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </section>
 
-      {/* Call-to-Action Section */}
-      <section>
-        <h3>Ready to Level Up Your Resume?</h3>
-        <p>
-          Join thousands of professionals who have transformed their resumes!
-        </p>
-        <button>
-          <Link to="/signup">Sign Up Now</Link>
-        </button>
+      {/* Testimonials Section */}
+      <section className="testimonials">
+        <h2>What Our Users Say</h2>
+        <div className="testimonial-cards">
+          <div className="testimonial">
+            <img src="/assets/profile1.jpg" alt="User 1" />
+            <blockquote>
+              "This tool helped me get my dream job. The feedback was insightful
+              and actionable!"
+            </blockquote>
+          </div>
+          <div className="testimonial">
+            <img src="/assets/profile2.jpg" alt="User 2" />
+            <blockquote>
+              "I landed multiple interviews after using this tool. Highly
+              recommend it!"
+            </blockquote>
+          </div>
+          <div className="testimonial">
+            <img src="/assets/profile3.jpg" alt="User 3" />
+            <blockquote>
+              "A must-have for anyone looking to improve their resume and career
+              prospects."
+            </blockquote>
+          </div>
+        </div>
       </section>
     </div>
   );
 };
 
-export default Homepage;
+export default App;

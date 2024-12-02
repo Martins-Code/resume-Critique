@@ -1,0 +1,19 @@
+:root {
+  /* Color Palette */
+  --primary-color: #433e49;
+  --secondary-color: #928490;
+  --highlight-color: #dbc1ad;
+  --background-color: #f3e8eb;
+  --neutral-color: #e4dfda;
+
+  /* Font Sizes */
+  --font-small: 0.9rem;
+  --font-medium: 1rem;
+  --font-large: 1.2rem;
+  --font-header: 2rem;
+
+  /* Spacing */
+  --padding-small: 10px;
+  --padding-medium: 20px;
+  --padding-large: 40px;
+}
